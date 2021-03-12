@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="content">
+    <input id="url" type="text" name="ip" value="" id="">
+    <button id="button">Cambiar</button>
+  </div>
+</body>
+
+<script>
+  const { ipcRenderer } = require('electron')
+
+  window.onload = () => {
+    let button = document.getElementById('button')
+    let url = document.getElementById('url')
+
+    url.addEventListener('keyup', (e) => {
+      if (e.keyCode == 13) {
+        e.preventDefault()
+        button.click()
+      }
+    })
+
+    button.onclick = () => {
+      ipcRenderer.send('change-url', url.value)
+    }
+
+    ipcRenderer.on('set-url', (e, string) => {
+      console.log(string)
+      document.getElementById('url').value = string
+    })
+  }
+</script>
+
+</html>

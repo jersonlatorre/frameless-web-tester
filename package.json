@@ -1,0 +1,17 @@
+{
+  "name": "frameless-web-tester",
+  "version": "1.0.1",
+  "description": "Frameless Web Tester",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . --overwrite; electron-installer-debian --src frameless-web-tester-linux-x64 --dest deb --arch amd64"
+  },
+  "author": "Jerson La Torre",
+  "devDependencies": {
+    "electron": "^11.2.3"
+  },
+  "dependencies": {
+    "electron-context-menu": "^2.5.0"
+  }
+}
