@@ -1,7 +1,8 @@
-const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const contextMenu = require('electron-context-menu')
 
 let isPopup = false
+let isFullscreen = false
 let mainWindow
 let popupWindow
 let url = 'http://127.0.0.1:5500'
@@ -15,7 +16,7 @@ ipcMain.on('change-url', (evt, newUrl) => {
 contextMenu({
   prepend: (params, window) => [
     {
-      label: 'Cambiar Puerto...',
+      label: 'Cambiar Url...',
 
       click: () => {
         if (isPopup) return
@@ -43,6 +44,21 @@ contextMenu({
         popupWindow.on('close', () => {
           isPopup = false
         })
+      }
+    },
+    {
+      label: 'Toggle Fullscreen',
+
+      click: () => {
+        isFullscreen = !isFullscreen
+        mainWindow.setFullScreen(isFullscreen)
+      }
+    },
+    {
+      label: 'Inspect',
+
+      click: () => {
+        mainWindow.openDevTools()
       }
     }
   ]
