@@ -4,14 +4,16 @@
   "description": "Frameless Web Tester",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "build": "electron-packager . --overwrite; electron-installer-debian --src frameless-web-tester-linux-x64 --dest deb --arch amd64"
+    "start": "./node_modules/.bin/electron .",
+    "buildLinux": "./node_modules/.bin/electron-packager . --overwrite; electron-installer-debian --src frameless-web-tester-linux-x64 --dest deb --arch amd64",
+    "buildMacOS": "./node_modules/.bin/electron-packager . --overwrite;"
   },
   "author": "Jerson La Torre",
   "devDependencies": {
-    "electron": "^11.2.3"
+    "electron": "^16.0.2"
   },
   "dependencies": {
-    "electron-context-menu": "^2.5.0"
+    "electron-context-menu": "^2.5.0",
+    "electron-packager": "^15.4.0"
   }
 }
